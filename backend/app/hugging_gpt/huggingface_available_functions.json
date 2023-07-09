@@ -1,0 +1,30 @@
+[
+    {
+        "name": "object-detection",
+        "description": "Object Detection models allow users to identify objects of certain defined classes. Object detection models receive an image as input and output the images with bounding boxes and labels on detected objects.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string",
+                    "description": "The path of the data to be inferred."
+                }
+            },
+            "required": ["data"]
+        }
+    },
+    {
+        "name": "image-to-text",
+        "description": "Image to text models output a text from a given image. Image captioning or optical character recognition can be considered as the most common applications of image to text.",
+        "parameters": {
+            "type": "object",
+            "properties": {
+                "data": {
+                    "type": "string",
+                    "description": "The path of the data to be inferred."
+                }
+            },
+            "required": ["data"]
+        }
+    }
+]
