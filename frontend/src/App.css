@@ -1,0 +1,16 @@
+.App-header {
+  text-align: center;
+}
+
+.App-body {
+  display: flex;
+  flex-direction: row;
+}
+
+.App-side-margin {
+  width: 10%;
+}
+
+.App-each-step {
+  width: 40%;
+}
