@@ -9,13 +9,14 @@ from .hugging_gpt import hugging_gpt
 
 
 class SubmitBody(BaseModel):
-    image_url: str
+    image_filepath: str
     user_prompt: str
 
 
 app = FastAPI()
 origins = [
-    "http://localhost:3000",
+    # "http://localhost:3000"
+    "https://hugginggpt-function-calling-frontend.azurewebsites.net"
 ]
 app.add_middleware(
     CORSMiddleware,
@@ -37,7 +38,8 @@ async def get_example_image_filepaths() -> dict[str, list[str]]:
     try:
         example_image_directory = "static/example_images/"
         example_image_filenames = os.listdir(example_image_directory)
-        example_image_filepaths = [os.path.join(example_image_directory, example_image_filename) for example_image_filename in example_image_filenames]
+        example_image_filepaths = [os.path.join(example_image_directory, example_image_filename)
+                                   for example_image_filename in example_image_filenames]
         response = {
             "example_image_filepaths": example_image_filepaths
         }
@@ -62,7 +64,7 @@ async def get_example_user_prompts() -> dict[str, list[str]]:
 @app.post("/submit")
 async def post_submit(submit_body: Annotated[SubmitBody, Body()]) -> dict[str, str]:
     hugging_gpt_instance = hugging_gpt.HuggingGPT(model="gpt-3.5-turbo-0613", is_verbose=True)
-    user_content = submit_body.user_prompt + " data: " + submit_body.image_url
+    user_content = submit_body.user_prompt + " data: " + submit_body.image_filepath
     assistant_content, used_function_name = hugging_gpt_instance.run(user_content)
     response = {
         "assistant_content": assistant_content,

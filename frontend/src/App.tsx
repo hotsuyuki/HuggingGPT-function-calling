@@ -8,7 +8,8 @@ type ResponseJsonType = {
 };
 
 function App() {
-  const serverUrl = "http://localhost:8000";
+  // const serverUrl = "http://localhost:8000";
+  const serverUrl = "https://hugginggpt-function-calling-backend.azurewebsites.net";
 
   const [exampleImageUrls, setExampleImageUrls] = React.useState<string[]>([]);
   const [submitImageUrl, setSubmitImageUrl] = React.useState<string>("");
@@ -38,12 +39,19 @@ function App() {
   const handleSubmit = () => {
     setIsWaitingResponseJson(true);
 
-    const submitBody = {
-      image_url: submitImageUrl,
+    const submitImageFilepath = submitImageUrl.replace(serverUrl + "/", "");
+    const submitData = {
+      image_filepath: submitImageFilepath,
       user_prompt: submitUserPrompt
     };
 
-    axios.post(serverUrl + "/submit", submitBody).then((response) => {
+    const submitConfig = {
+      headers: {
+        "Content-Type": "application/json"
+      }
+    };
+
+    axios.post(serverUrl + "/submit", submitData, submitConfig).then((response) => {
       setResponseJson(response.data);
       setIsWaitingResponseJson(false);
     });

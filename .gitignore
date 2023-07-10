@@ -9,6 +9,9 @@
 .vscode
 .history
 
+# Azure
+.deployment
+
 # Dependencies
 node_modules
 .pnp
