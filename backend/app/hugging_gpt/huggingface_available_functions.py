@@ -45,7 +45,9 @@ class HuggingfaceAvailableFunctions:
 
     # https://huggingface.co/tasks/image-classification
     def image_classification(self, function_name: str, function_arguments: dict) -> str:
-        pass
+        function_content = \
+            json.dumps(self.huggingface_inference_client.image_classification(function_arguments["data"]))
+        return function_content
 
     # https://huggingface.co/tasks/object-detection
     def object_detection(self, function_name: str, function_arguments: dict) -> str:
@@ -56,20 +58,14 @@ class HuggingfaceAvailableFunctions:
         ).text
         return function_content
 
-    # https://huggingface.co/tasks/video-classification
-    def video_classification(self, function_name: str, function_arguments: dict) -> str:
-        pass
-
-    # https://huggingface.co/tasks/zero-shot-image-classification
-    def zero_shot_image_classification(self, function_name: str, function_arguments: dict) -> str:
-        pass
-
     """
     Multimodal
     """
 
     # https://huggingface.co/tasks/document-question-answering
     def document_question_answering(self, function_name: str, function_arguments: dict) -> str:
+        # TODO: Pass the user prompt to this function as an additional argument
+        # TODO: so that the document-question-answering model can answer to the user prompt.
         pass
 
     # https://huggingface.co/tasks/image-to-text
@@ -79,4 +75,6 @@ class HuggingfaceAvailableFunctions:
 
     # https://huggingface.co/tasks/visual-question-answering
     def visual_question_answering(self, function_name: str, function_arguments: dict) -> str:
+        # TODO: Pass the user prompt to this function as an additional argument
+        # TODO: so that the document-question-answering model can answer to the user prompt.
         pass
