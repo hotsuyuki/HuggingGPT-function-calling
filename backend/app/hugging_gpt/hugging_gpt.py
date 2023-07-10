@@ -14,6 +14,8 @@ MAX_NUM_CONVERSATION = 5
 class HuggingGPT:
     def __init__(self, model: str = "gpt-3.5-turbo", is_verbose: bool = False) -> None:
         print(termcolor.colored("HuggingGPT.__init__()", DEBUG_PRINT_COLOR))
+        print()
+
         self.model = model
         self.is_verbose = is_verbose
         self.system_content = ""
@@ -22,22 +24,19 @@ class HuggingGPT:
         OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
         HUGGINGFACE_API_KEY = os.getenv("HUGGINGFACE_API_KEY")
 
+        openai.api_key = OPENAI_API_KEY
+        self.huggingface_available_functions_instance = \
+            huggingface_available_functions.HuggingfaceAvailableFunctions(HUGGINGFACE_API_KEY, is_verbose=self.is_verbose)
+
         if self.is_verbose:
             print(termcolor.colored("OPENAI_API_KEY = " + OPENAI_API_KEY[:8] + "...", DEBUG_PRINT_COLOR))
             print(termcolor.colored("HUGGINGFACE_API_KEY = " + HUGGINGFACE_API_KEY[:8] + "...", DEBUG_PRINT_COLOR))
             print()
 
-        openai.api_key = OPENAI_API_KEY
-        self.huggingface_available_functions_instance = \
-            huggingface_available_functions.HuggingfaceAvailableFunctions(HUGGINGFACE_API_KEY, is_verbose=is_verbose)
-
-        if self.is_verbose:
-            print(termcolor.colored("openai.api_key = " + openai.api_key[:8] + "...", DEBUG_PRINT_COLOR))
-            print(termcolor.colored(f"{self.huggingface_available_functions_instance = }", DEBUG_PRINT_COLOR))
-            print()
-
     def run(self, user_content: str) -> tuple[str, str]:
         print(termcolor.colored("HuggingGPT.run()", DEBUG_PRINT_COLOR))
+        print()
+
         messages = [
             {"role": "system", "content": self.system_content},
             {"role": "user", "content": user_content}
@@ -49,10 +48,6 @@ class HuggingGPT:
         is_stop = False
 
         while not is_stop:
-            if self.is_verbose:
-                print(termcolor.colored(f"{messages = }", DEBUG_PRINT_COLOR))
-                print()
-
             # In order to save the amount of input tokens (prompt_tokens),
             # adds `functions` argument only if the last role is `user`.
             # https://platform.openai.com/docs/guides/gpt/function-calling
@@ -71,6 +66,8 @@ class HuggingGPT:
             response_message = response["choices"][0]["message"]
 
             if self.is_verbose:
+                print(termcolor.colored(f"{messages = }", DEBUG_PRINT_COLOR))
+                print()
                 print(termcolor.colored(f"{response = }", DEBUG_PRINT_COLOR))
                 print()
 
@@ -82,15 +79,13 @@ class HuggingGPT:
                 if function_arguments and isinstance(function_arguments, str):
                     function_arguments = json.loads(function_arguments)
 
-                if self.is_verbose:
-                    print(termcolor.colored(f"{function_name = }", DEBUG_PRINT_COLOR))
-                    print(termcolor.colored(f"{function_arguments = }", DEBUG_PRINT_COLOR))
-                    print()
-
                 function_content = \
                     self.huggingface_available_functions_instance.call_function(function_name, function_arguments)
 
                 if self.is_verbose:
+                    print(termcolor.colored(f"{function_name = }", DEBUG_PRINT_COLOR))
+                    print(termcolor.colored(f"{function_arguments = }", DEBUG_PRINT_COLOR))
+                    print()
                     print(termcolor.colored(f"{function_content = }", DEBUG_PRINT_COLOR))
                     print()
 
