@@ -40,7 +40,7 @@ function App() {
     setIsWaitingResponseJson(true);
 
     const submitImageFilepath = submitImageUrl.replace(serverUrl + "/", "");
-    const submitData = {
+    const submitBody = {
       image_filepath: submitImageFilepath,
       user_prompt: submitUserPrompt
     };
@@ -51,7 +51,7 @@ function App() {
       }
     };
 
-    axios.post(serverUrl + "/submit", submitData, submitConfig).then((response) => {
+    axios.post(serverUrl + "/submit", submitBody, submitConfig).then((response) => {
       setResponseJson(response.data);
       setIsWaitingResponseJson(false);
     });

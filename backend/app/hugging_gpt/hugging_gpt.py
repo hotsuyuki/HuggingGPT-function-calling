@@ -79,8 +79,11 @@ class HuggingGPT:
                 if function_arguments and isinstance(function_arguments, str):
                     function_arguments = json.loads(function_arguments)
 
-                function_content = \
-                    self.huggingface_available_functions_instance.call_function(function_name, function_arguments)
+                function_content = self.huggingface_available_functions_instance.call_function(
+                    function_name,
+                    function_arguments,
+                    user_content
+                )
 
                 if self.is_verbose:
                     print(termcolor.colored(f"{function_name = }", DEBUG_PRINT_COLOR))

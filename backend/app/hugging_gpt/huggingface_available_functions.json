@@ -40,5 +40,19 @@
       },
       "required": ["data"]
     }
+  },
+  {
+    "name": "visual-question-answering",
+    "description": "Visual Question Answering is the task of answering open-ended questions based on an image. They output natural language responses to natural language questions.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "The filepath of the data to be inferred."
+        }
+      },
+      "required": ["data"]
+    }
   }
 ]
