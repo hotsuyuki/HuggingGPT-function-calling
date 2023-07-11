@@ -3,8 +3,8 @@
 A web app to call various Hugging Face API with natural language by GPT function calling feature
 
 https://hugginggpt-function-calling-frontend.azurewebsites.net/
-![./document/README_image/object-detection.png](./document/README_image/object-detection.png)
-(hosted on Microsoft Azure)
+![object-detection.png](./document/README_image/object-detection.png)
+Frontend: React (TypeScript) / Backend: FastAPI (Python) / Both are hosted on Microsoft Azure
 
 ## Overview
 
@@ -18,3 +18,5 @@ But the difference is that this project utilizes the [GPT function calling featu
 * object-detection
 * image-to-text
 * visual-question-answering
+
+See more details on [huggingface_available_functions.json](./backend/app/hugging_gpt/huggingface_available_functions.json)
