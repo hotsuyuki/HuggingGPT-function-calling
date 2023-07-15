@@ -6,7 +6,7 @@ https://hugginggpt-function-calling-frontend.azurewebsites.net/
 ![object-detection.png](./document/README_image/object-detection.png)
 
 * Frontend: React (TypeScript) hosted on Microsoft Azure App Service
-* Backend: FastAPI (Python) hosted on Microsoft Azure App Service
+* Backend: FastAPI (Python) hosted on Microsoft Azure Functions
 
 ## Overview
 
