@@ -9,7 +9,8 @@ type ResponseJsonType = {
 
 function App() {
   // const serverUrl = "http://localhost:8000";
-  const serverUrl = "https://hugginggpt-function-calling-backend.azurewebsites.net";
+  // const serverUrl = "https://hugginggpt-function-calling-backend.azurewebsites.net";
+  const serverUrl = "https://hugginggpt-function-calling-backend-azure-functions.azurewebsites.net";
 
   const [exampleImageUrls, setExampleImageUrls] = React.useState<string[]>([]);
   const [submitImageUrl, setSubmitImageUrl] = React.useState<string>("");

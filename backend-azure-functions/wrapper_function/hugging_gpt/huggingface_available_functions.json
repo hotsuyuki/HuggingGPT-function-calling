@@ -1,0 +1,58 @@
+[
+  {
+    "name": "image-classification",
+    "description": "Image classification is the task of assigning a label or class to an entire image. Images are expected to have only one class for each image. Image classification models take an image as input and return a prediction about which class the image belongs to.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "The filepath of the data to be inferred."
+        }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "object-detection",
+    "description": "Object Detection models allow users to identify objects of certain defined classes. Object detection models receive an image as input and output the images with bounding boxes and labels on detected objects.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "The filepath of the data to be inferred."
+        }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "image-to-text",
+    "description": "Image to text models output a text from a given image. Image captioning or optical character recognition can be considered as the most common applications of image to text.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "The filepath of the data to be inferred."
+        }
+      },
+      "required": ["data"]
+    }
+  },
+  {
+    "name": "visual-question-answering",
+    "description": "Visual Question Answering is the task of answering open-ended questions based on an image. They output natural language responses to natural language questions.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "string",
+          "description": "The filepath of the data to be inferred."
+        }
+      },
+      "required": ["data"]
+    }
+  }
+]

@@ -1,0 +1,4 @@
+Can you categorize this picture?
+How many objects are in this picture?
+Can you describe this picture?
+A question based on the picture: how is the weather?
