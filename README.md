@@ -2,7 +2,6 @@
 
 A web app to call various Hugging Face API with natural language by GPT function calling feature
 
-https://hugginggpt-function-calling-frontend.azurewebsites.net/
 ![object-detection.png](./document/README_image/object-detection.png)
 
 * Frontend: React (TypeScript) hosted on Microsoft Azure App Service
